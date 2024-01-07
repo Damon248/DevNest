@@ -10,6 +10,9 @@ app.get("/", (req, res) => {
   res.send("API Running!");
 });
 
+// initialising middleware
+app.use(express.json({ extended: false }));
+
 // Defining routes
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/users", require("./routes/api/users"));
