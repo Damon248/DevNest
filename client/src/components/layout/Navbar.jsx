@@ -8,6 +8,12 @@ const Navbar = () => {
   const authLinks = (
     <ul>
       <li>
+        <Link to="/profiles">
+          <i className="fa-solid fa-laptop-code hide-sm"></i>{" "}
+          <span>Developers</span>
+        </Link>
+      </li>
+      <li>
         <Link to="/dashboard">
           <i className="fa fa-user"></i>{" "}
           <span className="hide-sm">Dashboard</span>
@@ -24,7 +30,7 @@ const Navbar = () => {
   const guestLinks = (
     <ul>
       <li>
-        <a href="#!">Developers</a>
+        <a href="/profiles">Developers</a>
       </li>
       <li>
         <Link to="/register">Register</Link>
@@ -42,7 +48,7 @@ const Navbar = () => {
       <nav className="navbar bg-dark">
         <h1>
           <Link to="/">
-            <i className="fa fa-code"></i> DevNest
+            <i className="fa fa-solid fa-code"></i> DevNest
           </Link>
         </h1>
         {!loading && <>{isAuthenticated ? authLinks : guestLinks}</>}

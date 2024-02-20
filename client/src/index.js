@@ -19,6 +19,8 @@ import CreateProfile from "./components/profile-forms/CreateProfile";
 import EditProfile from "./components/profile-forms/EditProfile";
 import AddExperience from "./components/profile-forms/AddExperience";
 import AddEducation from "./components/profile-forms/AddEducation";
+import Profiles from "./components/profiles/Profiles";
+import Profile from "./components/profile/Profile";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -84,6 +86,24 @@ const router = createBrowserRouter(
           <section className="container">
             <Alert />
             <PrivateRoute Component={AddEducation} />
+          </section>
+        }
+      />
+      <Route
+        path="profiles"
+        element={
+          <section className="container">
+            <Alert />
+            <Profiles />
+          </section>
+        }
+      />
+      <Route
+        path="profile/:id"
+        element={
+          <section className="container">
+            <Alert />
+            <Profile />
           </section>
         }
       />
