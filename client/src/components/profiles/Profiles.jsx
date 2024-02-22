@@ -9,6 +9,7 @@ const Profiles = () => {
   useEffect(() => {
     getAllProfiles();
   }, []);
+
   const { profiles, loading } = useSelector((state) => state.profile);
 
   return (

@@ -15,7 +15,6 @@ const Profile = () => {
   const getProfileById = useGetProfileById();
   const userId = useParams();
   useEffect(() => {
-    console.log(userId.id);
     getProfileById(userId.id);
   }, []);
   return (

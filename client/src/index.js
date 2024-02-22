@@ -21,6 +21,9 @@ import AddExperience from "./components/profile-forms/AddExperience";
 import AddEducation from "./components/profile-forms/AddEducation";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
+import Posts from "./components/Posts/Posts";
+import Post from "./components/post/Post";
+import PageNotFound from "./components/layout/PageNotFound";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -104,6 +107,32 @@ const router = createBrowserRouter(
           <section className="container">
             <Alert />
             <Profile />
+          </section>
+        }
+      />
+      <Route
+        path="posts"
+        element={
+          <section className="container">
+            <Alert />
+            <PrivateRoute Component={Posts} />
+          </section>
+        }
+      />
+      <Route
+        path={`posts/:id`}
+        element={
+          <section className="container">
+            <Alert />
+            <PrivateRoute Component={Post} />
+          </section>
+        }
+      />
+      <Route
+        path="*"
+        element={
+          <section className="container">
+            <PageNotFound />
           </section>
         }
       />
