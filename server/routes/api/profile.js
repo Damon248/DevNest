@@ -4,7 +4,6 @@ const auth = require("../../middleware/auth");
 const Profile = require("../../models/Profile");
 const Post = require("../../models/Post");
 const { check, validationResult } = require("express-validator");
-const config = require("config");
 const request = require("request");
 require("dotenv").config();
 
