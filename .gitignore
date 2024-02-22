@@ -3,6 +3,7 @@ node_modules/
 # Ignore specific configuration files
 config.js
 config.json
+default.json
 
 # Ignore all files with .config extension
 *.config
