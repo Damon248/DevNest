@@ -1,0 +1,15 @@
+node_modules/
+
+# Ignore specific configuration files
+config.js
+config.json
+default.json
+
+# Ignore all files with .config extension
+*.config
+
+# Ignore all files in a 'config' directory
+config/
+
+# Ignore files in nested 'config' directories
+**/config/
