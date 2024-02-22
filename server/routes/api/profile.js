@@ -6,6 +6,10 @@ const Post = require("../../models/Post");
 const { check, validationResult } = require("express-validator");
 const config = require("config");
 const request = require("request");
+require("dotenv").config();
+
+const githubClientID = process.env.GITHUB_CLIENTID;
+const githubClientSecret = process.env.GITHUB_CLIENTID_SECRET;
 
 // @route GET api/profile/me
 // @desc Get current user's profile
@@ -287,11 +291,7 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
 router.get("/github/:username", (req, res) => {
   try {
     const options = {
-      uri: `https://api.github.com/users/${
-        req.params.username
-      }/repos?per_page=5&sort=created:asc&client_id=${config.get(
-        "githubClientID"
-      )}&client_secret=${config.get("githubClientSecret")}`,
+      uri: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${githubClientID}&client_secret=${githubClientSecret}`,
       method: "GET",
       headers: { "user-agent": "node.js" },
     };
