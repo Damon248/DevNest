@@ -11,6 +11,13 @@ app.get("/", (req, res) => {
   res.send("API Running!");
 });
 
+const corsOptions = {
+  origin: ["https://devnest-client.onrender.com", "http://localhost:3000"],
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions));
+
 app.use(cors());
 
 // initialising middleware
