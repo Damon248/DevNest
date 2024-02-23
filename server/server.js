@@ -12,8 +12,9 @@ app.get("/", (req, res) => {
 });
 
 const corsOptions = {
-  origin: ["https://devnest-client.onrender.com", "http://localhost:3000"],
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  origin: "https://devnest-client.onrender.com", // Replace with your frontend URL
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true, // Enable credentials (cookies, authorization headers, etc.)
 };
 
 app.use(cors(corsOptions));
