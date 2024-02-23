@@ -9,13 +9,11 @@ const Navbar = () => {
     <ul>
       <li>
         <Link to="/profiles">
-          {/* <i className="fa-solid fa-laptop-code hide-sm"></i>{" "} */}
           <span>Developers</span>
         </Link>
       </li>
       <li>
         <Link to="/posts">
-          {/* <i class="fa-solid fa-note-sticky hide-sm"></i>  */}
           <span>Posts</span>
         </Link>
       </li>
