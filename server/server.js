@@ -11,13 +11,13 @@ app.get("/", (req, res) => {
   res.send("API Running!");
 });
 
-const corsOptions = {
-  origin: "https://devnest-client.onrender.com", // Replace with your frontend URL
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // Enable credentials (cookies, authorization headers, etc.)
-};
+// const corsOptions = {
+//   origin: "https://devnest-client.onrender.com", // Replace with your frontend URL
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   credentials: true, // Enable credentials (cookies, authorization headers, etc.)
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 app.use(cors());
 
