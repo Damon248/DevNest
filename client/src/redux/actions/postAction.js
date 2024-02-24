@@ -12,12 +12,14 @@ import {
 } from "../features/post/postSlice";
 import { useAlertAction } from "./alertAction";
 
+const serverBaseUrl = process.env.REACT_APP_SERVER_BASE_URL;
+
 // Get posts
 export const useGetPosts = () => {
   const dispatch = useDispatch();
   const getPosts = async () => {
     try {
-      const res = await axios.get("/api/posts");
+      const res = await axios.get(`${serverBaseUrl}/api/posts`);
       dispatch(get_Posts(res.data));
     } catch (error) {
       dispatch(
@@ -36,7 +38,7 @@ export const useAddLike = () => {
   const dispatch = useDispatch();
   const addLike = async (id) => {
     try {
-      const res = await axios.put(`api/posts/like/${id}`);
+      const res = await axios.put(`${serverBaseUrl}/api/posts/like/${id}`);
       dispatch(updateLikes({ id, likes: res.data }));
     } catch (error) {
       postError({
@@ -53,7 +55,7 @@ export const useRemoveLike = () => {
   const dispatch = useDispatch();
   const removeLike = async (id) => {
     try {
-      const res = await axios.put(`api/posts/unlike/${id}`);
+      const res = await axios.put(`${serverBaseUrl}/api/posts/unlike/${id}`);
       dispatch(updateLikes({ id, likes: res.data }));
     } catch (error) {
       postError({
@@ -71,7 +73,7 @@ export const useDeletePost = () => {
   const setAlert = useAlertAction();
   const deletePost = async (id) => {
     try {
-      await axios.delete(`api/posts/${id}`);
+      await axios.delete(`${serverBaseUrl}/api/posts/${id}`);
       dispatch(delete_Post(id));
       setAlert("Post has been deleted!", "success");
     } catch (error) {
@@ -95,7 +97,11 @@ export const useAddPost = () => {
   };
   const addPost = async (formData) => {
     try {
-      const res = await axios.post("/api/posts", formData, config);
+      const res = await axios.post(
+        `${serverBaseUrl}/api/posts`,
+        formData,
+        config
+      );
       dispatch(createPost(res.data));
       setAlert("Post has been created!", "success");
     } catch (error) {
@@ -113,7 +119,7 @@ export const useGetPostById = () => {
   const dispatch = useDispatch();
   const getPostById = async (id) => {
     try {
-      const res = await axios.get(`/api/posts/${id}`);
+      const res = await axios.get(`${serverBaseUrl}/api/posts/${id}`);
       dispatch(get_Post(res.data));
     } catch (error) {
       dispatch(
@@ -139,7 +145,7 @@ export const useAddComment = () => {
   const addComment = async (postId, formData) => {
     try {
       const res = await axios.post(
-        `/api/posts/comment/${postId}`,
+        `${serverBaseUrl}/api/posts/comment/${postId}`,
         formData,
         config
       );
@@ -162,7 +168,9 @@ export const useDeleteComment = () => {
 
   const deleteComment = async (postId, commentId) => {
     try {
-      await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
+      await axios.delete(
+        `${serverBaseUrl}/api/posts/comment/${postId}/${commentId}`
+      );
       dispatch(delete_Comment(commentId));
       setAlert("Comment deleted successfully!", "success");
     } catch (error) {

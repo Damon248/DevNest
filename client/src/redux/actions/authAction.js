@@ -13,7 +13,7 @@ import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
 import { clearProfile } from "../features/profile/profileSlice";
 
-const serverBaseUrl = "https://devnest-wocf.onrender.com";
+const serverBaseUrl = process.env.REACT_APP_SERVER_BASE_URL;
 
 // Register user
 export const useRegisterUser = () => {

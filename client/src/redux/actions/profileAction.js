@@ -12,13 +12,15 @@ import {
 import { accountDeleted } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
+const serverBaseUrl = process.env.REACT_APP_SERVER_BASE_URL;
+
 // Get current user's profile
 export const useGetCurrentProfile = () => {
   const dispatch = useDispatch();
 
   const getCurrentProfile = async () => {
     try {
-      const res = await axios.get("/api/profile/me");
+      const res = await axios.get(`${serverBaseUrl}/api/profile/me`);
       dispatch(getProfile(res.data));
     } catch (error) {
       dispatch(
@@ -40,7 +42,7 @@ export const useGetAllProfiles = () => {
   const getAllProfiles = async () => {
     dispatch(clearProfile());
     try {
-      const res = await axios.get("/api/profile");
+      const res = await axios.get(`${serverBaseUrl}/api/profile`);
       dispatch(getProfiles(res.data));
     } catch (error) {
       dispatch(
@@ -61,7 +63,9 @@ export const useGetProfileById = () => {
 
   const getProfileById = async (userId) => {
     try {
-      const res = await axios.get(`/api/profile/user/${userId}`);
+      const res = await axios.get(
+        `${serverBaseUrl}/api/profile/user/${userId}`
+      );
       dispatch(getProfile(res.data));
     } catch (error) {
       dispatch(
@@ -75,13 +79,16 @@ export const useGetProfileById = () => {
 
   return getProfileById;
 };
+
 // Get Github repos
 export const useGetGithubRepos = () => {
   const dispatch = useDispatch();
 
   const getGithubRepos = async (username) => {
     try {
-      const res = await axios.get(`/api/profile/github/${username}`);
+      const res = await axios.get(
+        `${serverBaseUrl}/api/profile/github/${username}`
+      );
       dispatch(getRepos(res.data));
     } catch (error) {
       dispatch(
@@ -108,7 +115,11 @@ export const useCreateProfile = () => {
           "Content-Type": "application/json",
         },
       };
-      const res = await axios.post("/api/profile", formData, config);
+      const res = await axios.post(
+        `${serverBaseUrl}/api/profile`,
+        formData,
+        config
+      );
       dispatch(getProfile(res.data));
       alert(
         edit
@@ -147,7 +158,11 @@ export const useAddProfileExperience = () => {
           "Content-Type": "application/json",
         },
       };
-      const res = await axios.put("/api/profile/experience", formData, config);
+      const res = await axios.put(
+        `${serverBaseUrl}/api/profile/experience`,
+        formData,
+        config
+      );
       dispatch(updateProfile(res.data));
       alert("Experience added.", "success");
       navigate("/dashboard");
@@ -181,7 +196,11 @@ export const useAddProfileEducation = () => {
           "Content-Type": "application/json",
         },
       };
-      const res = await axios.put("/api/profile/education", formData, config);
+      const res = await axios.put(
+        `${serverBaseUrl}/api/profile/education`,
+        formData,
+        config
+      );
       dispatch(updateProfile(res.data));
       alert("Education added.", "success");
       navigate("/dashboard");
@@ -209,7 +228,9 @@ export const useDeleteProfileExperience = () => {
   const alert = useAlertAction();
   const deleteProfileExperience = async (id) => {
     try {
-      const res = await axios.delete(`/api/profile/experience/${id}`);
+      const res = await axios.delete(
+        `${serverBaseUrl}/api/profile/experience/${id}`
+      );
       dispatch(updateProfile(res.data));
       alert("Experience removed successfully.", "success");
     } catch (error) {
@@ -230,7 +251,9 @@ export const useDeleteProfileEducation = () => {
   const alert = useAlertAction();
   const deleteProfileEducation = async (id) => {
     try {
-      const res = await axios.delete(`/api/profile/education/${id}`);
+      const res = await axios.delete(
+        `${serverBaseUrl}/api/profile/education/${id}`
+      );
       dispatch(updateProfile(res.data));
       alert("Education removed successfully.", "success");
     } catch (error) {
@@ -256,7 +279,7 @@ export const useDeleteAccount = () => {
       )
     ) {
       try {
-        await axios.delete("/api/profile");
+        await axios.delete(`${serverBaseUrl}/api/profile`);
         dispatch(clearProfile());
         dispatch(accountDeleted());
         alert("Account has been deleted permanantly.");
