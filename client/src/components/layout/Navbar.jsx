@@ -34,7 +34,7 @@ const Navbar = () => {
   const guestLinks = (
     <ul>
       <li>
-        <a href="/profiles">Developers</a>
+        <Link to="/profiles">Developers</Link>
       </li>
       <li>
         <Link to="/register">Register</Link>
