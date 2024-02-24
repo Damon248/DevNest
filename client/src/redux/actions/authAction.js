@@ -13,6 +13,8 @@ import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
 import { clearProfile } from "../features/profile/profileSlice";
 
+const serverBaseUrl = "https://devnest-wocf.onrender.com";
+
 // Register user
 export const useRegisterUser = () => {
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ export const useRegisterUser = () => {
         },
       };
       const body = JSON.stringify(newUser);
-      const res = await axios.post("/api/users", body, config);
+      const res = await axios.post(`${serverBaseUrl}/api/users`, body, config);
       dispatch(registerSuccess(res.data));
       loadUser();
     } catch (error) {
@@ -61,7 +63,7 @@ export const useLoginUser = () => {
         },
       };
       const body = JSON.stringify({ email, password });
-      const res = await axios.post("/api/auth", body, config);
+      const res = await axios.post(`${serverBaseUrl}/api/auth`, body, config);
       dispatch(loginSuccess(res.data));
       loadUser();
     } catch (error) {
@@ -97,7 +99,7 @@ export const useLoadUser = () => {
       setAuthToken(localStorage.token);
     }
     try {
-      const res = await axios.get("/api/auth");
+      const res = await axios.get(`${serverBaseUrl}/api/auth`);
       dispatch(userLoaded(res.data));
     } catch (error) {
       dispatch(authError());
